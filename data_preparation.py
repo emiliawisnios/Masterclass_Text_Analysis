@@ -1,12 +1,12 @@
- # Import necessary libraries
+# Import necessary libraries
 import os
 import pandas as pd
 import re
 
 # Define constants for file paths
 DATASET_URL = "https://github.com/grant-TraDA/NLP-2023W/raw/refs/heads/main/13.%20Mining%20UNGA%20debates/project1/solution/dataset/dataset.zip"
-DATASET_ZIP_PATH = "/data/dataset.zip"
-UN_CORPUS_PATH = "/data/UN General Debate Corpus/TXT"
+DATASET_ZIP_PATH = "dataset.zip"
+UN_CORPUS_PATH = "UN General Debate Corpus/TXT"
 
 # Function to download and unzip the dataset
 def download_and_extract_data():
@@ -71,7 +71,7 @@ def extract_sentences_with_keywords(df, keywords):
                 year_list.append(row['year'])
                 country_list.append(row['country'])
                 # Clean and store the sentence
-                s = s.replace('\n', ' ').replace('\t', ' ').strip() + '.'
+                s = s.replace('\n', ' ').replace('\t', ' ').replace('\s+', ' ').strip() + '.'
                 sentence_list.append(s)
 
     # Create a new DataFrame for sentences containing the keywords
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     df = read_debate_texts(UN_CORPUS_PATH)
     
     # Extract sentences with specific keywords
-    keywords = ['war', 'peace']
+    keywords = ['security']
     df_sentences = extract_sentences_with_keywords(df, keywords)
     
     # Save the extracted sentences to a CSV file
