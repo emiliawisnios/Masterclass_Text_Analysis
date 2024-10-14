@@ -96,7 +96,7 @@ def test_functions():
         'session': ['74'], 
         'year': ['2019'], 
         'country': ['UnitedStates'], 
-        'text': ["This is a test speech about peace and war."]
+        'text': ["This is a test speech about intervention."]
     })
     assert 'session' in test_df.columns
     assert 'year' in test_df.columns
@@ -104,7 +104,7 @@ def test_functions():
     assert 'text' in test_df.columns
     
     # Test that the extract function returns sentences with the keywords
-    extracted_sentences = extract_sentences_with_keywords(test_df, ['peace', 'war'])
+    extracted_sentences = extract_sentences_with_keywords(test_df, ['intervention'])
     assert len(extracted_sentences) > 0
     assert 'peace' in extracted_sentences['sentence'].iloc[0] or 'war' in extracted_sentences['sentence'].iloc[0]
 
@@ -118,11 +118,11 @@ if __name__ == "__main__":
     df = read_debate_texts(UN_CORPUS_PATH)
     
     # Extract sentences with specific keywords
-    keywords = ['security']
+    keywords = ['intervention']
     df_sentences = extract_sentences_with_keywords(df, keywords)
     
     # Save the extracted sentences to a CSV file
-    save_to_csv(df_sentences, 'UN_peace_and_war.csv')
+    save_to_csv(df_sentences, 'UN_intervention.csv')
     
     # Run the assertion tests
     test_functions()
